@@ -1,4 +1,5 @@
 export { Account } from './Account'
 export { Connect } from './Connect'
 export { TokenDisplay } from './TokenDisplay'
+export { SingleTokenPage } from './SingleTokenPage'
 export { Erc1155Balance } from './Erc1155Balance'

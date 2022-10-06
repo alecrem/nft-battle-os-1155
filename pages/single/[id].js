@@ -3,7 +3,7 @@ import { Box, Container, Heading } from '@chakra-ui/react'
 import { useAccount } from 'wagmi'
 import { Connect } from '../../components'
 import { useMounted } from '../../hooks'
-import { TokenDisplay } from '../../components'
+import { SingleTokenPage } from '../../components'
 import { siteTitle } from '../../utils/settings'
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
 
           {isMounted && isConnected && (
             <>
-              <TokenDisplay token={query.id} />
+              <SingleTokenPage token={query.id} />
             </>
           )}
         </Box>
