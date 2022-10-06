@@ -1,13 +1,9 @@
+import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { useNetwork } from 'wagmi'
-import { Badge, Box, Link, Image, Heading, Text } from '@chakra-ui/react'
-import { NotAllowedIcon, ExternalLinkIcon } from '@chakra-ui/icons'
+import { Badge, Box, Link, Image } from '@chakra-ui/react'
 import { useTokenURI } from '../hooks'
-import { detectedTraits } from '../utils/settings'
-import {
-  getContractAddress,
-  openSeaTokenAddress
-} from '../utils/contractAddress'
+import { getContractAddress } from '../utils/contractAddress'
 
 export function SingleTokenPage({ token }) {
   const { chain } = useNetwork()
@@ -38,6 +34,7 @@ export function SingleTokenPage({ token }) {
         }
         const newData = await response.json()
         setTokenMetadata(newData)
+        console.log(newData)
         if (tokenUriIsIpfs)
           setImageUri('https://ipfs.io/ipfs/' + newData.image_url.substring(7))
         else setImageUri(newData.image)
@@ -50,11 +47,13 @@ export function SingleTokenPage({ token }) {
 
   return (
     <>
+      <Script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></Script>
+      <Script src="/sketch.js"></Script>
+      <div id="p5jscanvas"></div>
       <Box mt="1em">
         {JSON.stringify(tokenMetadata) !== '{}' ? (
           <>
-            <Image src={imageUri} alt={tokenMetadata.name} />
-            {JSON.stringify(tokenMetadata)}
+            <input type="hidden" id="tokenimage" value={imageUri}></input>
           </>
         ) : (
           <>
