@@ -53,7 +53,9 @@ export function TokenDisplay({ token }) {
       <Box w="176px" h="200px">
         {JSON.stringify(tokenMetadata) !== '{}' ? (
           <>
-            <Image src={imageUri} alt={tokenMetadata.name} />
+            <Link href={'/single/' + token}>
+              <Image src={imageUri} alt={tokenMetadata.name} />
+            </Link>
             <Link href={openSeaTokenAddress + token}>
               <Heading as="h3" size="sm" mt="1em">
                 {tokenMetadata.name} <ExternalLinkIcon></ExternalLinkIcon>
